@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Feb 20 12:45:14 2017
+
+@author: Habiba
+"""
+
+import urllib.request
+import xml.etree.ElementTree as et
+
+def addfunction(A):
+    result=0
+    for x in A:
+        result=result+x
+    return result
+with urllib.request.urlopen("http://www.w3schools.com/xml/cd_catalog.xml") as web_data:
+    str_data=web_data.read()
+xml_data=et.fromstring(str_data)
+cd_list=xml_data.findall("CD")
+cd_prices=[]
+for x in cd_list:
+    cd_prices.append(float(x.find("PRICE").text))
+print (addfunction(cd_prices))
+
+         
